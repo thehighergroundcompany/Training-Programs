@@ -1,0 +1,388 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Training Programs — The Higher Ground</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Lexend:wght@300;400;500;600&family=Cinzel:wght@400;600&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+html{scroll-behavior:smooth;}
+body{background:#0f0e0b;color:#f0ece0;font-family:'Lexend',sans-serif;font-weight:400;line-height:1.6;overflow-x:hidden;}
+
+/* NAV */
+nav{position:sticky;top:0;z-index:100;display:flex;align-items:center;justify-content:space-between;padding:0 56px;height:64px;background:rgba(15,14,11,0.97);backdrop-filter:blur(10px);border-bottom:2px solid #ffed00;}
+.nav-logo{font-family:'Bebas Neue',sans-serif;font-size:20px;letter-spacing:5px;color:#fff;text-decoration:none;}
+.nav-logo span{color:#ffed00;}
+.nav-back{font-family:'Cinzel',serif;font-size:11px;letter-spacing:3px;text-transform:uppercase;color:#555;text-decoration:none;transition:color .2s;}
+.nav-back:hover{color:#ffed00;}
+
+/* HERO */
+.hero{padding:56px 56px 44px;border-bottom:1px solid #1e1c17;text-align:center;position:relative;}
+.hero::before{content:"";position:absolute;inset:0;background:radial-gradient(ellipse at 50% 50%,rgba(106,222,32,0.04) 0%,transparent 65%);pointer-events:none;}
+.hero-eyebrow{font-family:'Cinzel',serif;font-size:10px;letter-spacing:.18em;text-transform:uppercase;color:#6ade20;margin-bottom:12px;}
+.hero h1{font-family:'Bebas Neue',sans-serif;font-size:clamp(52px,8vw,90px);line-height:.88;letter-spacing:4px;color:#f0ece0;margin-bottom:14px;}
+.hero h1 span{color:#6ade20;}
+.hero-sub{font-size:14px;font-weight:300;color:#6a6558;max-width:520px;margin:0 auto;line-height:1.65;}
+
+/* MAIN */
+.main{max-width:1100px;margin:0 auto;padding:48px 56px 80px;}
+
+/* TABS */
+.tabs{display:flex;gap:6px;margin-bottom:32px;flex-wrap:wrap;}
+.tab{background:transparent;border:1px solid #2e2c26;color:#6a6558;font-family:'Lexend',sans-serif;font-size:11px;letter-spacing:.1em;text-transform:uppercase;padding:9px 20px;border-radius:0;cursor:pointer;transition:all .2s;}
+.tab:hover{border-color:#6ade20;color:#6ade20;}
+.tab.active{background:#6ade20;border-color:#6ade20;color:#0a1a04;font-weight:500;}
+.panel{display:none;}
+.panel.active{display:block;}
+
+/* PLAN HEADER */
+.plan-hdr{display:flex;align-items:flex-start;justify-content:space-between;flex-wrap:wrap;gap:16px;margin-bottom:28px;padding-bottom:20px;border-bottom:1px solid #1e1c17;}
+.plan-name{font-family:'Bebas Neue',sans-serif;font-size:48px;letter-spacing:.04em;color:#f0ece0;line-height:1;}
+.plan-cat{font-family:'Cinzel',serif;font-size:10px;letter-spacing:.18em;text-transform:uppercase;color:#4e4b42;margin-bottom:4px;}
+.plan-tagline{font-family:'Cinzel',serif;font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:#6ade20;margin-top:4px;}
+.plan-desc{font-size:13px;font-weight:300;color:#6a6558;max-width:420px;line-height:1.55;margin-top:8px;}
+.meta{display:flex;gap:20px;flex-wrap:wrap;}
+.meta-chip{font-size:12px;color:#4e4b42;}
+
+/* BANNERS */
+.note{background:#0e1608;border:1px solid #243818;padding:18px 20px;margin-bottom:16px;}
+.note-title{font-family:'Cinzel',serif;font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:#6ade20;margin-bottom:10px;}
+.note-text{font-size:13px;font-weight:300;color:#8a8474;line-height:1.65;margin-bottom:10px;}
+.note-text:last-child{margin-bottom:0;}
+.supps{display:flex;gap:8px;flex-wrap:wrap;margin-top:10px;}
+.supp{background:#122008;border:1px solid #2a4010;padding:5px 12px;font-size:12px;color:#6ade20;}
+.divider{height:1px;background:#1e2a12;margin:16px 0;}
+.extra{background:#0a1220;border:1px solid #1a3050;padding:18px 20px;margin-bottom:16px;}
+.extra-title{font-family:'Cinzel',serif;font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:#5ba3d4;margin-bottom:12px;}
+.extra-row{margin-bottom:10px;}
+.extra-row-lbl{font-family:'Cinzel',serif;font-size:9px;letter-spacing:.1em;text-transform:uppercase;color:#2a5080;margin-bottom:6px;}
+.extra-pills{display:flex;gap:8px;flex-wrap:wrap;}
+.extra-pill{background:#0d1e30;border:1px solid #1a3a58;padding:5px 12px;font-size:12px;color:#5ba3d4;}
+.extra-pill.amz{border-color:#2a4a28;background:#0d1e10;color:#6ade20;}
+.pw{background:#1a1600;border:1px solid #3a3000;padding:18px 20px;margin-bottom:16px;}
+.pw-title{font-family:'Cinzel',serif;font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:#d4aa00;margin-bottom:8px;}
+.pw-name{font-family:'Bebas Neue',sans-serif;font-size:22px;letter-spacing:.04em;color:#e8d060;margin-bottom:4px;}
+.pw-note{font-size:13px;font-weight:300;color:#7a6a00;line-height:1.6;}
+.all-bar{background:#0d1a04;border:1px solid #1e3a08;padding:12px 16px;margin-bottom:24px;}
+.all-lbl{font-family:'Cinzel',serif;font-size:9px;letter-spacing:.14em;text-transform:uppercase;color:#4a6a20;margin-bottom:8px;}
+.all-pills{display:flex;gap:10px;flex-wrap:wrap;}
+
+/* SET PILLS */
+.sp{display:inline-block;font-size:10px;letter-spacing:.06em;text-transform:uppercase;padding:3px 8px;margin-bottom:3px;white-space:nowrap;font-family:'Lexend',sans-serif;}
+.sp-w{background:#1a2e06;color:#5aae18;}
+.sp-s{background:#0d1e2e;color:#5ba3d4;}
+.sp-f{background:#2a2200;color:#d4aa00;}
+
+/* WEEK GRID */
+.sec-lbl{font-family:'Cinzel',serif;font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:#4e4b42;margin-bottom:14px;}
+.week{display:grid;grid-template-columns:repeat(auto-fill,minmax(195px,1fr));gap:10px;margin-bottom:28px;}
+.day{background:#141310;border:1px solid #1e1c17;cursor:pointer;transition:border-color .2s;}
+.day:hover{border-color:#6ade20;}
+.day.rest{opacity:.5;cursor:default;pointer-events:none;}
+.day.sel{border-color:#6ade20;}
+.day.sel .day-top{background:#122008;}
+.day-top{background:#181712;padding:12px 14px 10px;border-bottom:1px solid #1e1c17;}
+.day-lbl{font-family:'Cinzel',serif;font-size:10px;letter-spacing:.14em;text-transform:uppercase;color:#4e4b42;margin-bottom:3px;}
+.day-name{font-family:'Bebas Neue',sans-serif;font-size:20px;letter-spacing:.04em;color:#f0ece0;}
+.day-focus{font-size:11px;color:#6ade20;margin-top:2px;}
+.day-focus.rl{color:#4e4b42;}
+.day-body{padding:12px 14px;}
+.mrow{display:flex;align-items:center;justify-content:space-between;padding:4px 0;border-bottom:1px solid #1a1916;}
+.mrow:last-child{border-bottom:none;}
+.mrow-nm{font-size:12px;color:#6a6558;}
+.mrow-ct{font-size:11px;color:#3a3830;}
+
+/* DETAIL */
+.detail{background:#141310;border:1px solid #2e2c26;padding:20px 22px;margin-bottom:20px;}
+.det-title{font-family:'Bebas Neue',sans-serif;font-size:26px;letter-spacing:.04em;color:#f0ece0;margin-bottom:4px;}
+.det-sub{font-family:'Cinzel',serif;font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:#6ade20;margin-bottom:18px;}
+.cardio{background:#0d1a04;border:1px solid #1e3a08;padding:14px 16px;margin-bottom:16px;display:flex;align-items:flex-start;gap:14px;}
+.cardio-icon{font-size:22px;color:#6ade20;flex-shrink:0;margin-top:2px;}
+.cardio-lbl{font-family:'Cinzel',serif;font-size:10px;letter-spacing:.14em;text-transform:uppercase;color:#3a6a10;margin-bottom:7px;}
+.cardio-name{font-family:'Bebas Neue',sans-serif;font-size:20px;letter-spacing:.04em;color:#a0e860;margin-bottom:10px;}
+.cardio-stats{display:flex;gap:10px;flex-wrap:wrap;}
+.cardio-stat{background:#0e2006;border:1px solid #2a4a10;padding:4px 10px;font-size:11px;color:#6ade20;}
+.mvmt{font-size:12px;color:#d4aa00;font-style:italic;margin-bottom:14px;padding:10px 14px;border-left:2px solid #d4aa00;background:#1a1600;}
+.msec{margin-bottom:20px;}
+.mshdr{font-family:'Cinzel',serif;font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:#4e4b42;margin-bottom:10px;padding-bottom:6px;border-bottom:1px solid #1e1c17;}
+.ex{display:grid;grid-template-columns:1fr auto;gap:8px;align-items:start;padding:8px 0;border-bottom:1px solid #1a1916;}
+.ex:last-child{border-bottom:none;}
+.ex-nm{font-size:13px;color:#c8c0a8;}
+.ex-note{font-size:11px;color:#4e4b42;font-style:italic;margin-top:2px;}
+.ex-sets{text-align:right;}
+
+/* FOOTER */
+footer{background:#111;border-top:2px solid #ffed00;padding:32px 56px;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:16px;}
+.foot-logo{font-family:'Bebas Neue',sans-serif;font-size:18px;letter-spacing:5px;color:#fff;}
+.foot-logo span{color:#ffed00;}
+footer p{font-family:'Cinzel',serif;font-size:10px;letter-spacing:2px;text-transform:uppercase;color:#444;}
+
+@media(max-width:768px){
+  nav{padding:0 20px;}
+  .hero{padding:40px 20px 32px;}
+  .main{padding:32px 20px 60px;}
+  .week{grid-template-columns:repeat(auto-fill,minmax(150px,1fr));}
+  footer{padding:24px 20px;flex-direction:column;align-items:flex-start;}
+}
+</style>
+</head>
+<body>
+
+<nav>
+  <span class="nav-logo">THE <span>HIGHER</span> GROUND</span>
+  <a class="nav-back" href="javascript:history.back()">&#8592; Back</a>
+</nav>
+
+<div class="hero">
+  <p class="hero-eyebrow">The Higher Ground</p>
+  <h1>FULL <span>TRAINING</span><br>PROGRAMS</h1>
+  <p class="hero-sub">5 days on &middot; 2 rest days &middot; 2 exercises per muscle group &middot; warm-up + 2 working sets</p>
+</div>
+
+<div class="main">
+  <div class="tabs">
+    <button class="tab active" id="tab-beginner"     onclick="switchPlan('beginner')">Beginner</button>
+    <button class="tab"        id="tab-intermediate" onclick="switchPlan('intermediate')">Intermediate</button>
+    <button class="tab"        id="tab-advanced"     onclick="switchPlan('advanced')">Advanced</button>
+  </div>
+  <div id="p-beginner"     class="panel active"></div>
+  <div id="p-intermediate" class="panel"></div>
+  <div id="p-advanced"     class="panel"></div>
+</div>
+
+<footer>
+  <div class="foot-logo">THE <span>HIGHER</span> GROUND</div>
+  <p>&copy; The Higher Ground. All rights reserved.</p>
+  <p style="font-size:11px;color:#3a3a3a;margin-top:12px;line-height:1.6;">It is your responsibility to perform all exercises safely. This is not medical advice — see your doctor for any questions. Contact <a href="mailto:TheHigherGroundCo@gmail.com" style="color:#3a3a3a;text-decoration:underline;">TheHigherGroundCo@gmail.com</a> for support.</p>
+</footer>
+
+<script>
+var W={
+  beg_mon:{muscles:[
+    {name:"Chest",ex:[{n:"Chest press machine",note:"Focus on full range of motion, squeeze at top"},{n:"Pec deck fly machine",note:"Control the return, no bouncing"}]},
+    {name:"Back",ex:[{n:"Seated cable row (wide bar)",note:"Pull to lower chest, keep back upright"},{n:"Lat pulldown machine",note:"Drive elbows down, not hands"}]},
+    {name:"Shoulders",ex:[{n:"Machine shoulder press",note:"Don't lock out at top, keep tension"},{n:"Dumbbell lateral raises",note:"Slight bend in elbow, lead with elbows"}]},
+    {name:"Biceps",ex:[{n:"Machine bicep curl",note:"Full extension at bottom, supinate at top"},{n:"Cable curl (rope)",note:"Keep elbows pinned to sides"}]},
+    {name:"Triceps",ex:[{n:"Tricep pushdown (rope)",note:"Flare rope at bottom, control the up"},{n:"Overhead dumbbell tricep extension",note:"Keep elbows close, don't flare out"}]}
+  ]},
+  beg_tue:{muscles:[
+    {name:"Quads",ex:[{n:"Leg press machine",note:"Feet shoulder-width, don't lock knees"},{n:"Leg extension machine",note:"Pause at top for a squeeze"}]},
+    {name:"Hamstrings",ex:[{n:"Lying leg curl machine",note:"Control the extension, don't snap"},{n:"Seated leg curl machine",note:"Keep hips down throughout, slow and controlled"}]},
+    {name:"Glutes",ex:[{n:"Hip adductor machine (inner thighs)",note:"Squeeze thighs together, slow and controlled"},{n:"Weighted sumo squat",note:"Wide stance, toes out, drive knees out as you descend"},{n:"Bodyweight walking wide lunges",note:"Wide step, keep chest tall, drive through heel to stand"}]},
+    {name:"Calves",ex:[{n:"Seated calf raise machine",note:"Full stretch at bottom, hold at top"},{n:"Standing calf raise (Smith machine)",note:"Single-leg option for added challenge"}]}
+  ]},
+  beg_wed:{muscles:[
+    {name:"Chest",ex:[{n:"Chest press machine",note:"Focus on full range of motion, squeeze at top"},{n:"Pec deck fly machine",note:"Control the return, no bouncing"}]},
+    {name:"Back",ex:[{n:"Seated cable row (close grip)",note:"Pull to lower chest, elbows tight to body"},{n:"Lat pulldown machine",note:"Drive elbows down, not hands"}]},
+    {name:"Shoulders",ex:[{n:"Machine shoulder press",note:"Don't lock out at top, keep tension"},{n:"Dumbbell lateral raises",note:"Slight bend in elbow, lead with elbows"}]},
+    {name:"Biceps",ex:[{n:"Machine bicep curl",note:"Full extension at bottom, supinate at top"},{n:"Hammer curls",note:"Neutral grip, squeeze at top, slow on the way down"}]},
+    {name:"Triceps",ex:[{n:"Tricep pushdown (rope)",note:"Flare rope at bottom, control the up"},{n:"Overhead dumbbell tricep extension",note:"Keep elbows close, don't flare out"}]}
+  ]},
+  beg_thu:{muscles:[
+    {name:"Chest",ex:[{n:"Chest press machine",note:"Focus on full range of motion, squeeze at top"},{n:"Pec deck fly machine",note:"Control the return, no bouncing"}]},
+    {name:"Back",ex:[{n:"Seated cable row (wide bar)",note:"Pull to lower chest, keep back upright"},{n:"Lat pulldown machine",note:"Drive elbows down, not hands"}]},
+    {name:"Shoulders",ex:[{n:"Barbell upright rows",note:"Lead with elbows, pull to chin level, don't shrug"},{n:"Machine shoulder press",note:"Don't lock out at top, keep tension"}]},
+    {name:"Biceps",ex:[{n:"Dumbbell seated curl",note:"Full extension at bottom, supinate at top"},{n:"Cable curl (rope)",note:"Keep elbows pinned to sides"}]},
+    {name:"Triceps",ex:[{n:"Tricep pushdown (straight bar)",note:"Lock elbows to sides, full extension at bottom"},{n:"Overhead dumbbell tricep extension",note:"Keep elbows close, don't flare out"}]}
+  ]},
+  beg_fri:{muscles:[
+    {name:"Quads",ex:[{n:"Leg press machine",note:"Feet shoulder-width, don't lock knees"},{n:"Leg extension machine",note:"Pause at top for a squeeze"}]},
+    {name:"Hamstrings",ex:[{n:"Dumbbell RDLs",note:"Hinge at hips, neutral spine, feel the hamstring stretch"},{n:"Seated leg curl machine",note:"Keep hips down throughout"}]},
+    {name:"Glutes",ex:[{n:"Hip abductor machine (outer thighs)",note:"Drive knees out, pause at end range"},{n:"Weighted sumo squat",note:"Wide stance, toes out, drive knees out as you descend"},{n:"Bodyweight walking wide lunges",note:"Wide step, keep chest tall, drive through heel to stand"}]},
+    {name:"Calves",ex:[{n:"Seated calf raise machine",note:"Full stretch at bottom, hold at top"},{n:"Standing calf raise (Smith machine)",note:"Single-leg option for added challenge"}]}
+  ]},
+  int_mon:{muscles:[
+    {name:"Chest",ex:[{n:"Barbell flat bench press",note:"Tuck elbows 45°, bar to lower chest"},{n:"Incline dumbbell press",note:"30–45° incline, full stretch at bottom"}]},
+    {name:"Back",ex:[{n:"Barbell bent-over row",note:"Hinge at hips, pull to belly button"},{n:"Single-arm dumbbell row",note:"Brace on bench, full elbow extension"}]},
+    {name:"Shoulders",ex:[{n:"Dumbbell Arnold press",note:"Rotate through full range of motion"},{n:"Dumbbell lateral raises",note:"Slight bend in elbow, lead with elbows"}]},
+    {name:"Biceps",ex:[{n:"EZ-bar curl",note:"Controlled negative (2–3 sec down)"},{n:"Incline dumbbell curl",note:"Full stretch at bottom is the key"}]},
+    {name:"Triceps",ex:[{n:"Close-grip bench press",note:"Elbows close to body, lower slowly"},{n:"Skull crushers (EZ-bar)",note:"Keep upper arms vertical throughout"}]}
+  ]},
+  int_tue:{muscles:[
+    {name:"Quads",ex:[{n:"Barbell back squat",note:"Depth to parallel minimum, knees track toes"},{n:"Leg extension machine",note:"Pause 1 sec at top, slow eccentric"}]},
+    {name:"Hamstrings",ex:[{n:"Romanian deadlift (dumbbells)",note:"Hinge until hamstring stretch, neutral spine"},{n:"Seated leg curl machine",note:"Slow 3-second lowering phase"}]},
+    {name:"Glutes",ex:[{n:"Barbell hip thrust",note:"Drive hips up, squeeze glutes hard at top"},{n:"Bulgarian split squat (dumbbells)",note:"Keep front shin vertical, upright torso"},{n:"Hip adductor machine (inner thighs)",note:"Squeeze thighs together, slow and controlled"}]},
+    {name:"Calves",ex:[{n:"Standing calf raise (Smith machine)",note:"Full stretch, 2-sec hold at top"},{n:"Seated calf raise machine",note:"Full stretch at bottom, hold at top"}]}
+  ]},
+  int_wed:{muscles:[
+    {name:"Chest",ex:[{n:"Barbell flat bench press",note:"Tuck elbows 45°, bar to lower chest"},{n:"Incline dumbbell press",note:"30–45° incline, full stretch at bottom"}]},
+    {name:"Back",ex:[{n:"Barbell bent-over row",note:"Hinge at hips, pull to belly button"},{n:"Close grip lat pulldown",note:"Pull bar to upper chest, squeeze lats at bottom"}]},
+    {name:"Shoulders",ex:[{n:"Dumbbell lateral raises",note:"Slight bend in elbow, lead with elbows"},{n:"Barbell upright row",note:"Lead with elbows, don't shrug"}]},
+    {name:"Biceps",ex:[{n:"EZ-bar curl",note:"Controlled negative (2–3 sec down)"},{n:"Incline dumbbell curl",note:"Full stretch at bottom is the key"}]},
+    {name:"Triceps",ex:[{n:"Close-grip bench press (EZ-bar)",note:"Elbows close to body, lower slowly"},{n:"Skull crushers (EZ-bar)",note:"Keep upper arms vertical throughout"}]}
+  ]},
+  int_thu:{muscles:[
+    {name:"Chest",ex:[{n:"Incline barbell bench press",note:"30–45° incline, tuck elbows 45°, bar to upper chest"},{n:"Bench dumbbell flys",note:"Slight bend in elbows, wide arc, squeeze at top"}]},
+    {name:"Back",ex:[{n:"Barbell bent-over row",note:"Hinge at hips, pull to belly button"},{n:"Close-grip lat pulldown",note:"Pull bar to upper chest, squeeze lats at bottom"}]},
+    {name:"Shoulders",ex:[{n:"Barbell shrugs",note:"Drive shoulders straight up, hold at top, slow lower"},{n:"Smith machine shoulder press",note:"Don't lock out at top, keep tension"}]},
+    {name:"Biceps",ex:[{n:"EZ-bar curl",note:"Controlled negative (2–3 sec down)"},{n:"Incline dumbbell curl",note:"Full stretch at bottom is the key"}]},
+    {name:"Triceps",ex:[{n:"Close-grip bench press",note:"Elbows close to body, lower slowly"},{n:"Skull crushers (EZ-bar)",note:"Keep upper arms vertical throughout"}]}
+  ]},
+  int_fri:{muscles:[
+    {name:"Quads",ex:[{n:"Dumbbell goblet squat",note:"Hold dumbbell at chest, squat deep, elbows inside knees"},{n:"Leg extension machine",note:"Pause 1 sec at top, slow eccentric"}]},
+    {name:"Hamstrings",ex:[{n:"Romanian deadlift (dumbbells)",note:"Hinge until hamstring stretch, neutral spine"},{n:"Hamstring leg curl machine",note:"Slow 3-second lowering phase"}]},
+    {name:"Glutes",ex:[{n:"Barbell hip thrust",note:"Drive hips up, squeeze glutes hard at top"},{n:"Dumbbell wide walking lunges",note:"Wide step, keep chest tall, drive through heel to stand"},{n:"Hip abductor machine (outer thighs)",note:"Drive knees out, pause at end range"}]},
+    {name:"Calves",ex:[{n:"Standing calf raise (Smith machine)",note:"Full stretch, 2-sec hold at top"},{n:"Seated calf raise machine",note:"Full stretch at bottom, hold at top"}]}
+  ]},
+  adv_mon:{muscles:[
+    {name:"Chest",ex:[{n:"Barbell flat bench press (paused)",note:"2-sec pause on chest, explosive press"},{n:"Incline dumbbell flys",note:"Slight bend in elbows, wide arc, squeeze at top on incline bench"}]},
+    {name:"Back",ex:[{n:"Mid grip lat pulldown (paused)",note:"Hands shoulder-width — pause at bottom 1 sec, slow eccentric"},{n:"Pendlay row (barbell)",note:"Bar starts on floor each rep, explosive pull"}]},
+    {name:"Shoulders",ex:[{n:"Barbell overhead press (standing)",note:"Brace core, press in a straight line"},{n:"Cable face pulls (paused)",note:"Pull to forehead, externally rotate at end — pause 1 sec"}]},
+    {name:"Biceps",ex:[{n:"Barbell drag curl (slow tempo)",note:"Drag bar up the torso — slow 3-sec up, slow 3-sec eccentric"},{n:"Spider curl (preacher bench)",note:"Chest on pad, full stretch, 3-sec negative"}]},
+    {name:"Triceps",ex:[{n:"V-bar tricep pushdown (paused)",note:"Elbows pinned — pause at full extension 1 sec, slow 3-sec return"},{n:"Cable overhead tricep extension",note:"Face away from stack, full overhead stretch"}]}
+  ]},
+  adv_tue:{muscles:[
+    {name:"Quads",ex:[{n:"Dumbbell sissy squat",note:"Lean back, rise on toes, lower slowly — full quad stretch"},{n:"Hack squat machine",note:"Narrow stance, slow 3-sec descent"}]},
+    {name:"Hamstrings",ex:[{n:"Kickstand RDL (dumbbell)",note:"Back foot for balance only, hinge deep on working leg"},{n:"Barbell Romanian deadlift",note:"Controlled stretch to mid-shin, full hip extension"}]},
+    {name:"Glutes",ex:[{n:"Barbell hip thrust (paused)",note:"Pause at top 2 sec, maximum squeeze"},{n:"Bulgarian split squats (dumbbells)",note:"Keep front shin vertical, upright torso, deep stretch"}]},
+    {name:"Calves",ex:[{n:"Standing calf raise (single-leg)",note:"Weighted vest or hold dumbbell for overload"},{n:"Seated calf raise (slow tempo)",note:"4-sec down, 2-sec hold at stretch"}]}
+  ]},
+  adv_wed:{muscles:[
+    {name:"Chest",ex:[{n:"Barbell flat bench press (paused)",note:"2-sec pause on chest, explosive press"},{n:"Flat bench dumbbell flys",note:"Slight bend in elbows, wide arc — light warm-up, heavy working set"}]},
+    {name:"Back",ex:[{n:"Seated cable rows (wide grip)",note:"Pull to lower chest, sit tall, squeeze shoulder blades"},{n:"Pendlay row (barbell)",note:"Bar starts on floor each rep, explosive pull"}]},
+    {name:"Shoulders",ex:[{n:"Barbell overhead press (standing)",note:"Brace core, press in a straight line"},{n:"Dumbbell lateral raises",note:"Lead with elbows, controlled lowering"}]},
+    {name:"Biceps",ex:[{n:"Barbell drag curl (paused)",note:"Drag bar up the torso — pause at top 1 sec, slow 3-sec eccentric"},{n:"Bench incline dumbbell curls",note:"Arms hang behind body on incline — maximum stretch at bottom"}]},
+    {name:"Triceps",ex:[{n:"Bench EZ-bar skull crushers (slow tempo)",note:"Lower bar to forehead slowly — 4-sec down, keep upper arms vertical"},{n:"V-bar tricep pushdown (paused)",note:"Elbows pinned — pause at full extension 1 sec, slow 3-sec return"}]}
+  ]},
+  adv_thu:{muscles:[
+    {name:"Chest",ex:[{n:"Barbell flat bench press (paused)",note:"2-sec pause on chest, explosive press"},{n:"Bench incline dumbbell press",note:"30–45° incline — light warm-up, heavy working set"}]},
+    {name:"Back",ex:[{n:"Close grip lat pulldown",note:"Pull to upper chest, squeeze lats"},{n:"Pendlay row (barbell)",note:"Bar starts on floor each rep, explosive pull"}]},
+    {name:"Shoulders",ex:[{n:"Barbell overhead press (standing)",note:"Brace core, press in a straight line"},{n:"Barbell shrugs (explosive + pause)",note:"Explosive drive up — hold at top 2 sec, slow lower"}]},
+    {name:"Biceps",ex:[{n:"Barbell drag curl (slow tempo)",note:"Drag bar up the torso — slow 3-sec up, slow 3-sec eccentric"},{n:"Spider curl (preacher bench)",note:"Chest on pad, full stretch, 3-sec negative"}]},
+    {name:"Triceps",ex:[{n:"V-bar overhead tricep extension (paused)",note:"Keep elbows close, pause at full stretch overhead 1 sec"},{n:"Bench barbell skull crushers",note:"Lower bar to forehead, keep upper arms vertical throughout"}]}
+  ]},
+  adv_fri:{muscles:[
+    {name:"Quads",ex:[{n:"Dumbbell sissy squat",note:"Lean back, rise on toes, lower slowly — full quad stretch"},{n:"Hack squat machine",note:"Narrow stance, slow 3-sec descent"}]},
+    {name:"Hamstrings",ex:[{n:"Kickstand RDL (dumbbell)",note:"Back foot for balance only, hinge deep on working leg"},{n:"Barbell Romanian deadlift",note:"Controlled stretch to mid-shin, full hip extension"}]},
+    {name:"Glutes",ex:[{n:"Barbell hip thrust (paused)",note:"Pause at top 2 sec, maximum squeeze"},{n:"Bulgarian split squats (dumbbells)",note:"Keep front shin vertical, upright torso, deep stretch"}]},
+    {name:"Calves",ex:[{n:"Standing calf raise (single-leg)",note:"Weighted vest or hold dumbbell for overload"},{n:"Seated calf raise (slow tempo)",note:"4-sec down, 2-sec hold at stretch"}]}
+  ]}
+};
+
+var PLANS={
+  beginner:{cat:"Beginner",name:"The Seed",tagline:"Plant it, tend it, watch it grow.",weeks:"4 weeks",days:"5 days/week",dur:"45 min/session",isBeg:true,
+    desc:"Machine-first movements and foundational patterns. Focused on learning form, building a mind-muscle connection, and safely progressing week over week.",
+    sched:[{d:"Monday",f:"Full Upper Body",m:["Chest","Back","Shoulders","Biceps","Triceps"]},{d:"Tuesday",f:"Full Legs",m:["Quads","Hamstrings","Glutes","Calves"]},{d:"Wednesday",f:"Full Upper Body",m:["Chest","Back","Shoulders","Biceps","Triceps"]},{d:"Thursday",f:"Full Upper Body",m:["Chest","Back","Shoulders","Biceps","Triceps"]},{d:"Friday",f:"Full Legs",m:["Quads","Hamstrings","Glutes","Calves"]},{d:"Saturday",f:"Rest",m:[]},{d:"Sunday",f:"Rest",m:[]}],
+    wk:["beg_mon","beg_tue","beg_wed","beg_thu","beg_fri",null,null]},
+  intermediate:{cat:"Intermediate",name:"The Forge",tagline:"Heat, pressure, transformation.",weeks:"4 weeks",days:"5 days/week",dur:"60 min/session",isBeg:false,
+    desc:"Free-weight compound lifts backed by machine isolation work. Progressive overload focus — alternate between increasing reps and weight each week.",
+    sched:[{d:"Monday",f:"Full Upper Body",m:["Chest","Back","Shoulders","Biceps","Triceps"]},{d:"Tuesday",f:"Full Legs",m:["Quads","Hamstrings","Glutes","Calves"]},{d:"Wednesday",f:"Full Upper Body",m:["Chest","Back","Shoulders","Biceps","Triceps"]},{d:"Thursday",f:"Full Upper Body",m:["Chest","Back","Shoulders","Biceps","Triceps"]},{d:"Friday",f:"Full Legs",m:["Quads","Hamstrings","Glutes","Calves"]},{d:"Saturday",f:"Rest",m:[]},{d:"Sunday",f:"Rest",m:[]}],
+    wk:["int_mon","int_tue","int_wed","int_thu","int_fri",null,null]},
+  advanced:{cat:"Advanced",name:"The Summit",tagline:"Few make it this far.",weeks:"4 weeks",days:"5 days/week",dur:"75 min/session",isBeg:false,
+    desc:"Heavy compound lifts with advanced technique modifiers — pause reps, tempo work, and failure sets on every exercise. Built for those chasing a new peak.",
+    sched:[{d:"Monday",f:"Full Upper Body",m:["Chest","Back","Shoulders","Biceps","Triceps"]},{d:"Tuesday",f:"Full Legs",m:["Quads","Hamstrings","Glutes","Calves"]},{d:"Wednesday",f:"Full Upper Body",m:["Chest","Back","Shoulders","Biceps","Triceps"]},{d:"Thursday",f:"Full Upper Body",m:["Chest","Back","Shoulders","Biceps","Triceps"]},{d:"Friday",f:"Full Legs",m:["Quads","Hamstrings","Glutes","Calves"]},{d:"Saturday",f:"Rest",m:[]},{d:"Sunday",f:"Rest",m:[]}],
+    wk:["adv_mon","adv_tue","adv_wed","adv_thu","adv_fri",null,null]}
+};
+
+var curPlan='beginner',selDay=0;
+
+function switchPlan(key){
+  curPlan=key; selDay=0;
+  ['beginner','intermediate','advanced'].forEach(function(k){
+    document.getElementById('tab-'+k).classList.toggle('active',k===key);
+    document.getElementById('p-'+k).classList.toggle('active',k===key);
+  });
+  render(key);
+}
+
+function selDayFn(idx){selDay=idx;render(curPlan);}
+
+function sharedNotes(isBeg){
+  var lpp=isBeg
+    ?'<span class="sp sp-f" style="font-size:11px;padding:5px 12px;">Heavy set &middot; 1&times;8</span>'
+    :'<span class="sp sp-f" style="font-size:11px;padding:5px 12px;">Last set &middot; train to failure</span>';
+  var ln=isBeg
+    ?"On the last set of every exercise, increase the weight and perform 8 heavy reps with full control."
+    :"On the last set of every exercise, train until failure — push until not one more rep is possible. Give it everything you have.";
+  return '<div class="note"><div class="note-title">&#9432; Important Notes</div>'
+    +'<p class="note-text">Soreness is normal, especially in the first few weeks — use lighter weight until your body acclimates to the demands of the program.</p>'
+    +'<p class="note-text">Every week, focus on progressive overload. Alternate your method — increase reps one week, then increase weight the next. This shocks the muscles and prevents plateaus.</p>'
+    +'<p class="note-text">'+ln+'</p>'
+    +'<div class="divider"></div>'
+    +'<p class="note-text" style="margin-bottom:8px;">For recovery, supplement daily with:</p>'
+    +'<div class="supps"><span class="supp">Magnesium</span><span class="supp">Vitamin D3</span><span class="supp">Zinc</span><span class="supp">Creatine</span></div></div>'
+    +'<div class="extra"><div class="extra-title">&#9733; Extra Benefits</div>'
+    +'<div class="extra-row"><div class="extra-row-lbl">Bloodflow</div><div class="extra-pills"><span class="extra-pill">Beetroot</span></div></div>'
+    +'<div class="extra-row"><div class="extra-row-lbl">Recovery &amp; Vitality</div><div class="extra-pills"><span class="extra-pill">Sea moss</span><span class="extra-pill">Fish oil</span><span class="extra-pill">BCAAs</span></div></div>'
+    +'<div class="extra-row"><div class="extra-row-lbl">Men\'s Performance &mdash; Amazon</div><div class="extra-pills"><span class="extra-pill amz">Sotalix Turkesterone</span></div></div></div>'
+    +'<div class="pw"><div class="pw-title">&#9889; Recommended Pre-Workout</div><div class="pw-name">Bucked Up &mdash; Mother Bucker</div><p class="pw-note">Start with 1/4 scoop to assess tolerance before progressing to a full serving.</p></div>'
+    +'<div class="all-bar"><div class="all-lbl">All Movements</div><div class="all-pills">'
+    +'<span class="sp sp-w" style="font-size:11px;padding:5px 12px;">Warm-up &middot; 1&times;30 light</span>'
+    +'<span class="sp sp-s" style="font-size:11px;padding:5px 12px;">Working set &middot; 1&times;15</span>'
+    +lpp+'</div></div>';
+}
+
+function render(key){
+  var p=PLANS[key];
+  var c=document.getElementById('p-'+key);
+  var isBeg=!!p.isBeg;
+  var lp=isBeg?'<div class="sp sp-f">1&times;8 heavy</div>':'<div class="sp sp-f">1&times;failure</div>';
+
+  var html='<div class="plan-hdr">'
+    +'<div><p class="plan-cat">'+p.cat+'</p>'
+    +'<div class="plan-name">'+p.name+'</div>'
+    +'<p class="plan-tagline">'+p.tagline+'</p>'
+    +'<p class="plan-desc">'+p.desc+'</p></div>'
+    +'<div class="meta">'
+    +'<span class="meta-chip">&#x1F4C5; '+p.weeks+'</span>'
+    +'<span class="meta-chip">&#x1F501; '+p.days+'</span>'
+    +'<span class="meta-chip">&#x23F0; '+p.dur+'</span>'
+    +'</div></div>';
+
+  html+=sharedNotes(isBeg);
+
+  html+='<p class="sec-lbl">Weekly schedule &mdash; tap a training day to view exercises</p>';
+  html+='<div class="week">';
+  p.sched.forEach(function(d,i){
+    var isRest=d.f==='Rest';
+    var isSel=i===selDay&&!isRest;
+    html+='<div class="day'+(isRest?' rest':'')+(isSel?' sel':'')+'"'
+      +(isRest?'':' onclick="selDayFn('+i+')"')+'>'
+      +'<div class="day-top">'
+      +'<div class="day-lbl">'+d.d+'</div>'
+      +'<div class="day-name">'+(isRest?'Rest':'Training')+'</div>'
+      +'<div class="day-focus'+(isRest?' rl':'')+'">'+( isRest?'Recovery day':d.f)+'</div>'
+      +'</div>';
+    if(!isRest){
+      html+='<div class="day-body">';
+      d.m.forEach(function(m){html+='<div class="mrow"><span class="mrow-nm">'+m+'</span><span class="mrow-ct">2 ex</span></div>';});
+      html+='</div>';
+    }
+    html+='</div>';
+  });
+  html+='</div>';
+
+  var wo=(p.wk&&p.wk[selDay])?W[p.wk[selDay]]:null;
+  var sd=p.sched[selDay];
+  if(wo){
+    html+='<div class="detail">'
+      +'<div class="det-title">'+sd.f+'</div>'
+      +'<div class="det-sub">'+sd.d+' &middot; '+p.cat+'</div>'
+      +'<div class="cardio"><span class="cardio-icon">&#x1F3C3;</span><div>'
+      +'<div class="cardio-lbl">Session start &mdash; before any movements</div>'
+      +'<div class="cardio-name">Treadmill Cardio Warmup</div>'
+      +'<div class="cardio-stats"><span class="cardio-stat">10 minutes</span><span class="cardio-stat">Speed 3</span><span class="cardio-stat">Incline 6</span></div>'
+      +'</div></div>'
+      +'<div class="mvmt">All movements should be slow and controlled with full range of motion.</div>';
+    wo.muscles.forEach(function(mg){
+      html+='<div class="msec"><div class="mshdr">'+mg.name+'</div>';
+      mg.ex.forEach(function(ex){
+        html+='<div class="ex">'
+          +'<div><div class="ex-nm">'+ex.n+'</div><div class="ex-note">'+ex.note+'</div></div>'
+          +'<div class="ex-sets"><span class="sp sp-w">1&times;30 light</span><span class="sp sp-s">'+(isBeg?'1&times;15':'1&times;12')+'</span>'+lp+'</div>'
+          +'</div>';
+      });
+      html+='</div>';
+    });
+    html+='</div>';
+  }
+  c.innerHTML=html;
+}
+
+render('beginner');
+</script>
+</body>
+</html>
